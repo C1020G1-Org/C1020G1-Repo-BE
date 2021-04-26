@@ -18,6 +18,13 @@ public class AccountDuplicatedValidator implements ConstraintValidator<AccountDu
 
     }
 
+    /**
+     * author: PhucPT
+     * method: check whether account name is used
+     * @param account
+     * @param context
+     * @return
+     */
     @Override
     public boolean isValid(Account account, ConstraintValidatorContext context) {
         Account databaseAccount = accountRepository.getAccountByName(account.getAccountName());

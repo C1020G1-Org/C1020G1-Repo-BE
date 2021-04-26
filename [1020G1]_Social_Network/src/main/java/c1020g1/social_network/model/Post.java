@@ -14,6 +14,7 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "post_id")
     private Integer postId;
+
     @Column(name = "post_content")
     @NotBlank(message = "Content not blank!!")
     private String postContent;
