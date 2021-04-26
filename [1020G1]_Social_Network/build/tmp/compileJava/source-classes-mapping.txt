@@ -4,12 +4,12 @@ c1020g1/social_network/model/GroupRequest.java
  c1020g1.social_network.model.GroupRequest
 c1020g1/social_network/SocialNetworkApplication.java
  c1020g1.social_network.SocialNetworkApplication
-c1020g1/social_network/model/Post.java
- c1020g1.social_network.model.Post
-c1020g1/social_network/model/ChildComment.java
- c1020g1.social_network.model.ChildComment
-c1020g1/social_network/service/impl/CommentServiceImpl.java
- c1020g1.social_network.service.impl.CommentServiceImpl
+c1020g1/social_network/model/GroupWarning.java
+ c1020g1.social_network.model.GroupWarning
+c1020g1/social_network/model/Ward.java
+ c1020g1.social_network.model.Ward
+c1020g1/social_network/repository/UserInfoRepository.java
+ c1020g1.social_network.repository.UserInfoRepository
 c1020g1/social_network/model/FavouriteUser.java
  c1020g1.social_network.model.FavouriteUser
 c1020g1/social_network/model/Friends.java
@@ -24,45 +24,45 @@ c1020g1/social_network/model/FriendRequest.java
  c1020g1.social_network.model.FriendRequest
 c1020g1/social_network/model/GroupUser.java
  c1020g1.social_network.model.GroupUser
-c1020g1/social_network/service/CommentService.java
- c1020g1.social_network.service.CommentService
+c1020g1/social_network/model/District.java
+ c1020g1.social_network.model.District
 c1020g1/social_network/model/UserConnection.java
  c1020g1.social_network.model.UserConnection
-c1020g1/social_network/service/UserService.java
- c1020g1.social_network.service.UserService
-c1020g1/social_network/model/ParentComment.java
- c1020g1.social_network.model.ParentComment
-c1020g1/social_network/model/Ward.java
- c1020g1.social_network.model.Ward
+c1020g1/social_network/model/ChildComment.java
+ c1020g1.social_network.model.ChildComment
+c1020g1/social_network/model/ReferentAccount.java
+ c1020g1.social_network.model.ReferentAccount
+c1020g1/social_network/repository/PostRepository.java
+ c1020g1.social_network.repository.PostRepository
 c1020g1/social_network/model/PersistentLogins.java
  c1020g1.social_network.model.PersistentLogins
-c1020g1/social_network/service/PostService.java
- c1020g1.social_network.service.PostService
+c1020g1/social_network/model/Province.java
+ c1020g1.social_network.model.Province
+c1020g1/social_network/model/PostImage.java
+ c1020g1.social_network.model.PostImage
+c1020g1/social_network/model/Post.java
+ c1020g1.social_network.model.Post
+c1020g1/social_network/model/User.java
+ c1020g1.social_network.model.User
+c1020g1/social_network/model/ParentComment.java
+ c1020g1.social_network.model.ParentComment
+c1020g1/social_network/controller/UserInfoController.java
+ c1020g1.social_network.controller.UserInfoController
+c1020g1/social_network/service/UserService.java
+ c1020g1.social_network.service.UserService
 c1020g1/social_network/repository/CommentRepository.java
  c1020g1.social_network.repository.CommentRepository
 c1020g1/social_network/service/impl/UserInfoServiceImpl.java
  c1020g1.social_network.service.impl.UserInfoServiceImpl
-c1020g1/social_network/model/User.java
- c1020g1.social_network.model.User
-c1020g1/social_network/controller/PostController.java
- c1020g1.social_network.controller.PostController
-c1020g1/social_network/model/Province.java
- c1020g1.social_network.model.Province
-c1020g1/social_network/model/GroupWarning.java
- c1020g1.social_network.model.GroupWarning
-c1020g1/social_network/model/ReferentAccount.java
- c1020g1.social_network.model.ReferentAccount
-c1020g1/social_network/model/District.java
- c1020g1.social_network.model.District
-c1020g1/social_network/controller/UserInfoController.java
- c1020g1.social_network.controller.UserInfoController
-c1020g1/social_network/repository/UserInfoRepository.java
- c1020g1.social_network.repository.UserInfoRepository
-c1020g1/social_network/model/PostImage.java
- c1020g1.social_network.model.PostImage
-c1020g1/social_network/repository/PostRepository.java
- c1020g1.social_network.repository.PostRepository
 c1020g1/social_network/controller/CommentController.java
  c1020g1.social_network.controller.CommentController
+c1020g1/social_network/controller/PostController.java
+ c1020g1.social_network.controller.PostController
 c1020g1/social_network/service/impl/PostServiceImpl.java
  c1020g1.social_network.service.impl.PostServiceImpl
+c1020g1/social_network/service/CommentService.java
+ c1020g1.social_network.service.CommentService
+c1020g1/social_network/service/impl/CommentServiceImpl.java
+ c1020g1.social_network.service.impl.CommentServiceImpl
+c1020g1/social_network/service/PostService.java
+ c1020g1.social_network.service.PostService

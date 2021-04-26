@@ -16,6 +16,9 @@ public class UserInfoController {
     UserService userInfoService
     ;
 
+    /** get User by ID
+     *  author: DungHA
+     * */
     @RequestMapping(value = "/user/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<User> getUser(@PathVariable("id") Integer id) {
         System.out.println("Fetching User with id " + id);

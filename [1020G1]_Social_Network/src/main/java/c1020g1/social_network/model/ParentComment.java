@@ -1,5 +1,7 @@
 package c1020g1.social_network.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 
 @Entity
@@ -16,6 +18,7 @@ public class ParentComment {
     private String commentImage;
     @ManyToOne
     @JoinColumn(name = "post_id", referencedColumnName = "post_id")
+    @JsonBackReference
     private Post post;
 
     @ManyToOne

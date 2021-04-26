@@ -14,9 +14,10 @@ import java.util.List;
 public class CommentController {
     @Autowired
     CommentService commentService ;
-/**
- *
- * */
+
+    /** get parentComment by ID
+     *  author: DungHA
+     * */
     @RequestMapping(value = "/comment/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<ParentComment>> getParentComment(@PathVariable("id") Integer id) {
         System.out.println("Fetching Comment with id " + id);

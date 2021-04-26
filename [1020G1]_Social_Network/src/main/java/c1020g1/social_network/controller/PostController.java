@@ -19,6 +19,9 @@ public class PostController {
     @Autowired
     PostService postService ;
 
+    /** get Post Of User by ID
+       author: DungHA
+     * */
     @RequestMapping(value = "/post/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Post>> getPost(@PathVariable("id") Integer id) {
         System.out.println("Fetching Post with id " + id);

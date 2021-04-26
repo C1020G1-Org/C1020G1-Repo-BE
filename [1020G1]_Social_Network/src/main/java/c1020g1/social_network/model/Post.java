@@ -31,6 +31,16 @@ public class Post {
     @OneToMany(mappedBy = "post")
     List<PostImage> postImages;
 
+    @OneToMany(mappedBy = "post")
+    List<ParentComment> parentComments;
+
+    public List<ParentComment> getParentComments() {
+        return parentComments;
+    }
+
+    public void setParentComments(List<ParentComment> parentComments) {
+        this.parentComments = parentComments;
+    }
 
     public List<PostImage> getPostImages() {
         return postImages;
