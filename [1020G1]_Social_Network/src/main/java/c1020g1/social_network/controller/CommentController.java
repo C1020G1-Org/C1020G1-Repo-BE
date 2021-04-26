@@ -85,7 +85,9 @@ public class CommentController {
 
         commentService.editParentComment(parentComment);
 
-        return new ResponseEntity<>(commentService.getParentCommentById(parentCommentId),HttpStatus.OK);
+        ParentComment parentCommentFromDb = commentService.getParentCommentById(parentCommentId);
+
+        return new ResponseEntity<>(parentCommentFromDb,HttpStatus.OK);
     }
 
     /**
