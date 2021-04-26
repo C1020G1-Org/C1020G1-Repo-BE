@@ -11,6 +11,5 @@ import java.util.List;
 public interface PostRepository extends JpaRepository<Post, Integer> {
     @Query(value = " select p from Post p " +
             "where p.postId = ?1 ")
-//@Query(value = "select p from Post p where p.postId = ?1")
     List<Post> findPostByPostId(Integer id);
 }

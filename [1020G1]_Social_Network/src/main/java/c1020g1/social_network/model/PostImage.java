@@ -1,5 +1,7 @@
 package c1020g1.social_network.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 
 @Entity
@@ -12,6 +14,7 @@ public class PostImage {
     private int postImageId;
     @ManyToOne
     @JoinColumn(name = "post_id", referencedColumnName = "post_id")
+    @JsonBackReference
     private Post post;
     @Column(name = "image")
     private String image;
