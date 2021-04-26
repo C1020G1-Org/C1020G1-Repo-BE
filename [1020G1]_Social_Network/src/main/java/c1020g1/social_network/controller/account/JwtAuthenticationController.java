@@ -60,6 +60,9 @@ public class JwtAuthenticationController {
      */
     @PostMapping(value = "/login")
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest jwtRequest) {
+        if(jwtRequest == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
         JwtResponse jwtResponse = login(jwtRequest);
         return ResponseEntity.ok(jwtResponse);
     }
