@@ -6,11 +6,22 @@ import c1020g1.social_network.service.DistrictService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class DistrictServiceImpl implements DistrictService {
-
     @Autowired
-    private DistrictRepository districtRepository;
+    DistrictRepository districtRepository;
+
+    /**
+     * Method: get list district
+     * Author: ThinhTHB
+     * @return
+     */
+    @Override
+    public List<District> getDistrictList() {
+        return districtRepository.getDistrictList();
+    }
 
     /**
      * author: PhucPT
@@ -21,5 +32,6 @@ public class DistrictServiceImpl implements DistrictService {
     @Override
     public Iterable<District> getDistrictByProvinceId(int provinceId) {
         return districtRepository.findAllByProvinceId(provinceId);
+
     }
 }

@@ -11,11 +11,14 @@ public class GroupWarning {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "group_warning_id")
     private Integer groupWarningId;
+
     @Column(name = "warning_content")
     private String warningContent;
+
     @ManyToOne
     @JoinColumn(name = "group_user_id", referencedColumnName = "group_user_id")
     private GroupUser groupUser;
+
     @Column(name = "warning_date",nullable = false)
     private Date warningDate;
 

@@ -1,10 +1,7 @@
 package c1020g1.social_network.model;
 
-import c1020g1.social_network.annotation.AccountDuplicated;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "account")
@@ -20,6 +17,9 @@ public class Account {
     @NotBlank(message = "required")
     @Column(name = "password")
     private String password;
+
+    @OneToOne(mappedBy = "account")
+    private User user;
 
     public Integer getAccountId() {
         return accountId;
@@ -45,4 +45,12 @@ public class Account {
         this.password = password;
     }
 
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

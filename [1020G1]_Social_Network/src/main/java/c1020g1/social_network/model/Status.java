@@ -9,8 +9,17 @@ public class Status {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "status_id")
     private Integer statusId;
+
     @Column(name = "status_name")
     private String statusName;
+
+    public Status() {
+    }
+
+    public Status(int statusId, String statusName) {
+        this.statusId = statusId;
+        this.statusName = statusName;
+    }
 
     public Integer getStatusId() {
         return statusId;
@@ -28,11 +37,4 @@ public class Status {
         this.statusName = statusName;
     }
 
-    public Status(Integer statusId, String statusName) {
-        this.statusId = statusId;
-        this.statusName = statusName;
-    }
-
-    public Status() {
-    }
 }

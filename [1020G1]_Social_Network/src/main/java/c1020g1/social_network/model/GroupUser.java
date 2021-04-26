@@ -10,9 +10,11 @@ public class GroupUser {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "group_user_id")
     private Integer groupUserId;
+
     @ManyToOne
     @JoinColumn(name = "group_id", referencedColumnName = "group_id")
-    private Group group;
+    private GroupSocial group;
+
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     private User user;
@@ -25,11 +27,11 @@ public class GroupUser {
         this.groupUserId = groupUserId;
     }
 
-    public Group getGroup() {
+    public GroupSocial getGroup() {
         return group;
     }
 
-    public void setGroup(Group group) {
+    public void setGroup(GroupSocial group) {
         this.group = group;
     }
 

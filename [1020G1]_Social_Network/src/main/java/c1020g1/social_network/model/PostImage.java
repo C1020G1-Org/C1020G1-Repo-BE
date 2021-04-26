@@ -10,9 +10,11 @@ public class PostImage {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "post_image_id")
     private Integer postImageId;
+
     @ManyToOne
     @JoinColumn(name = "post_id", referencedColumnName = "post_id")
     private Post post;
+
     @Column(name = "image")
     private String image;
 
