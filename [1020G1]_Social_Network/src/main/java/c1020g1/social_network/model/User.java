@@ -3,7 +3,6 @@ package c1020g1.social_network.model;
 import javax.persistence.*;
 import java.util.Date;
 
-
 @Entity
 @Table(name = "user")
 public class User {

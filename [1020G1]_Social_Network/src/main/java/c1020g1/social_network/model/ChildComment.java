@@ -1,10 +1,24 @@
 package c1020g1.social_network.model;
 
+<<<<<<< HEAD
+=======
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
+
+>>>>>>> post_management
 import javax.persistence.*;
 
 @Entity
 @Table(name = "child_comment")
+<<<<<<< HEAD
 public class ChildComment {
+=======
+//@JsonIdentityInfo(
+//        generator = ObjectIdGenerators.PropertyGenerator.class,
+//        property = "childCommentId")
+public class ChildComment implements Validator {
+>>>>>>> post_management
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,6 +30,7 @@ public class ChildComment {
     private String commentImage;
     @ManyToOne
     @JoinColumn(name = "parent_comment_id", referencedColumnName = "parent_comment_id")
+    @JsonBackReference
     private ParentComment parentComment;
 
     @ManyToOne

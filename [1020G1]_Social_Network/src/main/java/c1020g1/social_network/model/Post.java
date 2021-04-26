@@ -1,11 +1,19 @@
 package c1020g1.social_network.model;
 
 import javax.persistence.*;
+<<<<<<< HEAD
 import java.util.Date;
+=======
+import javax.validation.constraints.NotBlank;
+import java.sql.Timestamp;
+>>>>>>> post_management
 import java.util.List;
 
 @Entity
 @Table(name = "post")
+//@JsonIdentityInfo(
+//        generator = ObjectIdGenerators.PropertyGenerator.class,
+//        property = "postId")
 public class Post {
 
     @Id
@@ -29,6 +37,7 @@ public class Post {
         this.postId = postId;
     }
     @OneToMany(mappedBy = "post")
+<<<<<<< HEAD
     List<PostImage> postImages;
 
     @OneToMany(mappedBy = "post")
@@ -51,6 +60,11 @@ public class Post {
     }
 
     public int getPostId() {
+=======
+    private List<ParentComment> parentComments;
+
+    public Integer getPostId() {
+>>>>>>> post_management
         return postId;
     }
 

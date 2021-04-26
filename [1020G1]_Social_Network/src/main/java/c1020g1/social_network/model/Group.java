@@ -4,9 +4,17 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+<<<<<<< HEAD:[1020G1]_Social_Network/src/main/java/c1020g1/social_network/model/Group.java
 @Table(name = "[group]")
 public class Group {
 
+=======
+@Table(name = "group_social")
+//@JsonIdentityInfo(
+//        generator = ObjectIdGenerators.PropertyGenerator.class,
+//        property = "groupId")
+public class GroupSocial {
+>>>>>>> post_management:[1020G1]_Social_Network/src/main/java/c1020g1/social_network/model/GroupSocial.java
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "group_id")

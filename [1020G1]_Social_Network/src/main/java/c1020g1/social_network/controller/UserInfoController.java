@@ -1,7 +1,7 @@
 package c1020g1.social_network.controller;
 
 import c1020g1.social_network.model.User;
-import c1020g1.social_network.service.UserService;
+import c1020g1.social_network.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
