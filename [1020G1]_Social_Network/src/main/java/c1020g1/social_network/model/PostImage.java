@@ -19,8 +19,12 @@ public class PostImage {
     @Column(name = "image")
     private String image;
 
+<<<<<<< HEAD
 
     public int getPostImageId() {
+=======
+    public Integer getPostImageId() {
+>>>>>>> 2f10ba501fc9c4b5002eb908358863e91587f569
         return postImageId;
     }
 

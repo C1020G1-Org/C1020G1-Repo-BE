@@ -1,12 +1,25 @@
 package c1020g1.social_network.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+<<<<<<< HEAD
+=======
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
+>>>>>>> 2f10ba501fc9c4b5002eb908358863e91587f569
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "parent_comment")
+<<<<<<< HEAD
 public class ParentComment {
+=======
+//@JsonIdentityInfo(
+//        generator = ObjectIdGenerators.PropertyGenerator.class,
+//        property = "parentCommentId")
+public class ParentComment implements Validator {
+>>>>>>> 2f10ba501fc9c4b5002eb908358863e91587f569
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +38,15 @@ public class ParentComment {
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     private User user;
 
+<<<<<<< HEAD
     public int getParentCommentId() {
+=======
+    @OneToMany(mappedBy = "parentComment")
+    @JsonManagedReference
+    private List<ChildComment> childComments;
+
+    public Integer getParentCommentId() {
+>>>>>>> 2f10ba501fc9c4b5002eb908358863e91587f569
         return parentCommentId;
     }
 
