@@ -9,14 +9,40 @@ import java.util.List;
 
 public interface PostService {
 
+    /**
+     * Author : CaoLPT
+     *create post
+     * @param post
+     */
     void createPost(Post post);
 
+    /**
+     * Author : CaoLPT
+     * edit post
+     * @param post
+     */
     void editPost(Post post);
 
+    /**
+     * Author : CaoLPT
+     * get post
+     * @param postId
+     */
     Post getPostById(Integer postId);
 
+    /**
+     * Author : CaoLPT
+     * get all posts in news feed
+     * @param userId
+     * @param pageable
+     */
     Page<Post> getAllPostInNewsFeed(Integer userId, Pageable pageable);
 
+    /**
+     * Author : CaoLPT
+     * get all image of post
+     * @param postId
+     */
     List<PostImage> getAllImageByPostId(Integer postId);
 
 }

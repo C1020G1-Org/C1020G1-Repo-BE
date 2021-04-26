@@ -32,6 +32,12 @@ public class PostController {
     @Autowired
     private UserService userService;
 
+    /**
+     * Author : CaoLPT
+     * get all posts in news feed of user
+     * @param userId
+     * @param pageable
+     */
     @GetMapping("/newsfeed/{userId}")
     public ResponseEntity<Page<Post>> findAllPostInNewsFeed(@PathVariable("userId") Integer userId, @PageableDefault(size = 3) Pageable pageable){
         User userFromDb = userService.getUserById(userId);
@@ -47,6 +53,11 @@ public class PostController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
+    /**
+     * Author : CaoLPT
+     * find all images of the post
+     * @param postId
+     */
     @GetMapping("/image/{postId}")
     public ResponseEntity<List<PostImage>> findAllImageByPostId(@PathVariable("postId") Integer postId){
         Post postFromDb = postService.getPostById(postId);
@@ -61,7 +72,14 @@ public class PostController {
 
         return new ResponseEntity<>(listPostImage, HttpStatus.OK);
     }
-  
+
+    /**
+     * Author : CaoLPT
+     * create new post
+     * @param post
+     * @param bindingResult
+     * @param ucBuilder
+     */
    @PostMapping("")
     public ResponseEntity<Void> createPost(@Validated @RequestBody Post post, BindingResult bindingResult, UriComponentsBuilder ucBuilder) {
         if (bindingResult.hasFieldErrors()){
@@ -75,6 +93,13 @@ public class PostController {
         return new ResponseEntity<>(headers, HttpStatus.CREATED);
     }
 
+    /**
+     * Author : CaoLPT
+     * edit post
+     * @param postId
+     * @param post
+     * @param bindingResult
+     */
     @PutMapping("/{postId}")
     public ResponseEntity<Post> editPost(@PathVariable("postId") Integer postId,@Validated @RequestBody Post post, BindingResult bindingResult) {
         if (bindingResult.hasFieldErrors()){
@@ -92,6 +117,11 @@ public class PostController {
         return new ResponseEntity<>(post1, HttpStatus.OK);
     }
 
+    /**
+     * Author : CaoLPT
+     * get post by ID
+     * @param postId
+     */
     @GetMapping("/{postId}")
     public ResponseEntity<Post> getPostById(@PathVariable("postId") Integer postId){
         return new ResponseEntity<>(postService.getPostById(postId), HttpStatus.OK);

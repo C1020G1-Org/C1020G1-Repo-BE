@@ -26,6 +26,11 @@ public class CommentController {
 
     // methods for parent-comment
 
+    /**
+     * Author : CaoLPT
+     * find all parent comment by postID
+     * @param postId
+     */
     @GetMapping("/parent/{postId}")
     public ResponseEntity<List<ParentComment>> findAllParentCommentByPostId(@PathVariable("postId") Integer postId){
         Post postFromDb = postService.getPostById(postId);
@@ -41,6 +46,12 @@ public class CommentController {
         return new ResponseEntity<>(listParentComments, HttpStatus.OK);
     }
 
+    /**
+     * Author : CaoLPT
+     * create new parent comment
+     * @param parentComment
+     * @param bindingResult
+     */
     @PostMapping("/parent")
     public ResponseEntity<ParentComment> createParentComment(@Valid @RequestBody ParentComment parentComment,BindingResult bindingResult){
         new ParentComment().validate(parentComment,bindingResult);
@@ -54,6 +65,13 @@ public class CommentController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
+    /**
+     * Author : CaoLPT
+     * Edit parent comment
+     * @param parentCommentId
+     * @param parentComment
+     * @param bindingResult
+     */
     @PutMapping("/parent/{parentCommentId}")
     public ResponseEntity<ParentComment> editParentComment(@PathVariable("parentCommentId") Integer parentCommentId,@Valid @RequestBody ParentComment parentComment,BindingResult bindingResult){
         ParentComment fromDb = commentService.getParentCommentById(parentCommentId);
@@ -70,6 +88,11 @@ public class CommentController {
         return new ResponseEntity<>(commentService.getParentCommentById(parentCommentId),HttpStatus.OK);
     }
 
+    /**
+     * Author : CaoLPT
+     * delete parent comment
+     * @param parentCommentId
+     */
     @DeleteMapping("/parent/{parentCommentId}")
     public ResponseEntity<ParentComment> deleteParentComment(@PathVariable("parentCommentId") Integer parentCommentId){
         ParentComment parentCommentFromDb = commentService.getParentCommentById(parentCommentId);
@@ -84,6 +107,11 @@ public class CommentController {
 
     //methods for child-comment
 
+    /**
+     * Author : CaoLPT
+     * find all child comment by parent comment ID
+     * @param parentCommentId
+     */
     @GetMapping("/child/{parentCommentId}")
     public ResponseEntity<List<ChildComment>> findAllChildCommentByParentCommentId(@PathVariable("parentCommentId") Integer parentCommentId){
         ParentComment parentCommentFromDb = commentService.getParentCommentById(parentCommentId);
@@ -99,6 +127,12 @@ public class CommentController {
         return new ResponseEntity<>(listChildComment, HttpStatus.OK);
     }
 
+    /**
+     * Author : CaoLPT
+     * create child comment
+     * @param childComment
+     * @param bindingResult
+     */
     @PostMapping("/child")
     public ResponseEntity<ChildComment> createChildComment(@Valid @RequestBody ChildComment childComment,BindingResult bindingResult){
         new ChildComment().validate(childComment,bindingResult);
@@ -112,6 +146,13 @@ public class CommentController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
+    /**
+     * Author : CaoLPT
+     * edit child comment
+     * @param childCommentId
+     * @param childComment
+     * @param bindingResult
+     */
     @PutMapping("/child/{childCommentId}")
     public ResponseEntity<ChildComment> editChildComment(@PathVariable("childCommentId") Integer childCommentId,@Valid @RequestBody ChildComment childComment,BindingResult bindingResult){
         ChildComment fromDb = commentService.getChildCommentById(childCommentId);
@@ -128,6 +169,11 @@ public class CommentController {
         return new ResponseEntity<>(commentService.getChildCommentById(childCommentId), HttpStatus.OK);
     }
 
+    /**
+     * Author : CaoLPT
+     * delete child comment
+     * @param childCommentId
+     */
     @DeleteMapping("/child/{childCommentId}")
     public ResponseEntity<ChildComment> deleteChildComment(@PathVariable("childCommentId") Integer childCommentId){
         ChildComment fromDb = commentService.getChildCommentById(childCommentId);

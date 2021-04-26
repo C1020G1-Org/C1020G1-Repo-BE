@@ -21,6 +21,11 @@ public class CommentServiceImpl implements CommentService {
 
     // methods for parent-comment
 
+    /**
+     * Author : CaoLPT
+     * get all parent comment
+     * @param postId
+     */
     @Override
     public List<ParentComment> getAllParentCommentByPostId(Integer postId) {
         List<ParentComment> result = parentCommentRepository.getAllParentCommentByPostId(postId);
@@ -30,6 +35,11 @@ public class CommentServiceImpl implements CommentService {
         return result;
     }
 
+    /**
+     * Author : CaoLPT
+     * create parent comment
+     * @param parentComment
+     */
     @Override
     @Transactional
     public void createParentComment(ParentComment parentComment) {
@@ -40,20 +50,36 @@ public class CommentServiceImpl implements CommentService {
                 parentComment.getCommentTime());
     }
 
+    /**
+     * Author : CaoLPT
+     * edit parent comment
+     * @param parentComment
+     */
     @Override
     @Transactional
     public void editParentComment(ParentComment parentComment) {
         parentCommentRepository.editParentComment(parentComment.getContent(),
-                                                    parentComment.getCommentImage(),
-                                                    parentComment.getParentCommentId()
-                                                    );
+                parentComment.getCommentImage(),
+                parentComment.getParentCommentId()
+        );
     }
 
+    /**
+     * Author : CaoLPT
+     * get parent comment
+     * @param parentCommentId
+     * @return
+     */
     @Override
     public ParentComment getParentCommentById(Integer parentCommentId) {
         return parentCommentRepository.getParentCommentById(parentCommentId);
     }
 
+    /**
+     * Author : CaoLPT
+     * delete parent comment
+     * @param parentCommentId
+     */
     @Transactional
     @Override
     public void removeParentComment(Integer parentCommentId) {
@@ -63,6 +89,11 @@ public class CommentServiceImpl implements CommentService {
 
     // methods for child-comment
 
+    /**
+     * Author : CaoLPT
+     * get all child comments
+     * @param parentCommentId
+     */
     @Override
     public List<ChildComment> getAllChildCommentByParentCommentId(Integer parentCommentId) {
         List<ChildComment> result = childCommentRepository.getAllChildCommentByParentCommentId(parentCommentId);
@@ -72,29 +103,49 @@ public class CommentServiceImpl implements CommentService {
         return result;
     }
 
+    /**
+     * Author : CaoLPT
+     * get child comment
+     * @param childCommentId
+     */
     @Override
     public ChildComment getChildCommentById(Integer childCommentId) {
-       return childCommentRepository.getChildCommentById(childCommentId);
+        return childCommentRepository.getChildCommentById(childCommentId);
     }
 
+    /**
+     * Author : CaoLPT
+     * create child comment
+     * @param childComment
+     */
     @Transactional
     @Override
     public void createChildComment(ChildComment childComment) {
         childCommentRepository.createChildComment(childComment.getContent(),
-                                                    childComment.getCommentImage(),
-                                                    childComment.getParentComment().getParentCommentId(),
-                                                    childComment.getUser().getUserId(),
-                                                    childComment.getCommentTime());
+                childComment.getCommentImage(),
+                childComment.getParentComment().getParentCommentId(),
+                childComment.getUser().getUserId(),
+                childComment.getCommentTime());
     }
 
+    /**
+     * Author : CaoLPT
+     * edit child comment
+     * @param childComment
+     */
     @Transactional
     @Override
     public void editChildComment(ChildComment childComment) {
         childCommentRepository.editChildComment(childComment.getContent(),
-                                                childComment.getCommentImage(),
-                                                childComment.getChildCommentId());
+                childComment.getCommentImage(),
+                childComment.getChildCommentId());
     }
 
+    /**
+     * Author : CaoLPT
+     * delete child comment
+     * @param childCommentId
+     */
     @Transactional
     @Override
     public void removeChildComment(Integer childCommentId) {

@@ -21,11 +21,21 @@ public class PostServiceImpl implements PostService {
     @Autowired
     private PostImageRepository postImageRepository;
 
+    /**
+     * Author : CaoLPT
+     * get post
+     * @param postId
+     */
     @Override
     public Post getPostById(Integer postId) {
         return postRepository.getPostById(postId);
     }
 
+    /**
+     * Author : CaoLPT
+     *create post
+     * @param post
+     */
     @Override
     @Transactional
     public void createPost(Post post) {
@@ -36,17 +46,33 @@ public class PostServiceImpl implements PostService {
         }
     }
 
+    /**
+     * Author : CaoLPT
+     * edit post
+     * @param post
+     */
     @Override
     @Transactional
     public void editPost(Post post) {
         postRepository.editPost(post.getPostContent(), post.getPostStatus(), post.getPostId());
     }
 
+    /**
+     * Author : CaoLPT
+     * get all posts in news feed
+     * @param userId
+     * @param pageable
+     */
     @Override
     public Page<Post> getAllPostInNewsFeed(Integer userId, Pageable pageable) {
         return postRepository.getAllPostInNewsFeed(userId, pageable);
     }
 
+    /**
+     * Author : CaoLPT
+     * get all image of post
+     * @param postId
+     */
     @Override
     public List<PostImage> getAllImageByPostId(Integer postId) {
         return postImageRepository.getAllImageByPostId(postId);
