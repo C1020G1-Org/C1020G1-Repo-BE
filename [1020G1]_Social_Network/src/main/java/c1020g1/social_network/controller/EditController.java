@@ -33,10 +33,6 @@ public class EditController {
         return editService.getUserInfoById(id);
     }
 
-//    @GetMapping("/user/1/edit")
-//    public User getUserInfo() {
-//        return editService.getUserInfoById(1);
-//    }
 
     @PostMapping("user/edit")
     public void save(@RequestBody User user){
@@ -52,7 +48,7 @@ public class EditController {
     public List<District> getDistrict() { return districtService.getDistrictList(); }
 
     @GetMapping("/user/province")
-    public List<Province> getProvinceList() { return provinceService.getProvinceList(); }
+    public Iterable<Province> getProvinceList() { return provinceService.getAllProvince(); }
 }
 
 

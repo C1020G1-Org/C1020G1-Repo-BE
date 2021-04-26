@@ -13,6 +13,14 @@ public class Favourite {
     @Column(name = "favourite_name")
     private String favouriteName;
 
+    public Favourite() {
+    }
+
+    public Favourite(Integer favouriteId, String favouriteName) {
+        this.favouriteId = favouriteId;
+        this.favouriteName = favouriteName;
+    }
+
     public Integer getFavouriteId() {
         return favouriteId;
     }

@@ -9,18 +9,20 @@ public class PostImage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "post_image_id")
-    private int postImageId;
+    private Integer postImageId;
+
     @ManyToOne
     @JoinColumn(name = "post_id", referencedColumnName = "post_id")
     private Post post;
+
     @Column(name = "image")
     private String image;
 
-    public int getPostImageId() {
+    public Integer getPostImageId() {
         return postImageId;
     }
 
-    public void setPostImageId(int postImageId) {
+    public void setPostImageId(Integer postImageId) {
         this.postImageId = postImageId;
     }
 
