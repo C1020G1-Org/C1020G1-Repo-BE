@@ -13,7 +13,7 @@ public class GroupUser {
 
     @ManyToOne
     @JoinColumn(name = "group_id", referencedColumnName = "group_id")
-    private GroupSocial groupSocial;
+    private GroupSocial group;
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
@@ -27,12 +27,12 @@ public class GroupUser {
         this.groupUserId = groupUserId;
     }
 
-    public GroupSocial getGroupSocial() {
-        return groupSocial;
+    public GroupSocial getGroup() {
+        return group;
     }
 
-    public void setGroupSocial(GroupSocial groupSocial) {
-        this.groupSocial = groupSocial;
+    public void setGroup(GroupSocial group) {
+        this.group = group;
     }
 
     public User getUser() {

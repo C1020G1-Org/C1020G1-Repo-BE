@@ -1,11 +1,20 @@
 package c1020g1.social_network.model;
 
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
 @Table(name = "child_comment")
-public class ChildComment {
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "childCommentId")
+public class ChildComment implements Validator {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -76,4 +85,18 @@ public class ChildComment {
     public void setCommentTime(Timestamp commentTime) {
         this.commentTime = commentTime;
     }
+
+    @Override
+    public boolean supports(Class<?> clazz) {
+        return ChildComment.class.isAssignableFrom(clazz);
+    }
+
+    @Override
+    public void validate(Object target, Errors errors) {
+        ChildComment childComment =(ChildComment) target;
+
+        if(childComment.getContent() == null && childComment.getCommentImage() == null)
+            errors.reject("bad-request");
+    }
+
 }

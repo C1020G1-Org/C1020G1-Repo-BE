@@ -1,6 +1,8 @@
 package c1020g1.social_network.model;
 
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "district")
@@ -13,6 +15,8 @@ public class District {
 
     @ManyToOne
     @JoinColumn(name = "province_id", referencedColumnName = "province_id", nullable = false)
+    @NotNull(message = "required")
+    @Valid
     private Province province;
 
     @Column(name = "district_name")
