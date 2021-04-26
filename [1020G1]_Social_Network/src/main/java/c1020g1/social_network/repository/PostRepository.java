@@ -9,15 +9,11 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import java.sql.Timestamp;
+import java.util.List;
 
 
 @Repository
 public interface PostRepository extends JpaRepository<Post, Integer> {
-<<<<<<< HEAD
-    @Query(value = " select p from Post p " +
-            "where p.postId = ?1 ")
-    List<Post> findPostByPostId(Integer id);
-=======
 
     @Modifying
     @Query(value = "insert into post (post_content, post_status, post_published, user_id) values (:postContent, " +
@@ -58,5 +54,9 @@ public interface PostRepository extends JpaRepository<Post, Integer> {
             "ORDER BY post_published DESC ",countQuery= "SELECT count(*) from friends\n", nativeQuery = true)
     Page<Post> getAllPostInNewsFeed(@Param("userId") Integer userId, Pageable pageable);
 
->>>>>>> post_management
+    @Query(value = "SELECT *\n" +
+            "FROM post\n" +
+            "WHERE user_id = :userId", nativeQuery = true)
+    List<Post> getAllPostInWallUser(@Param("userId") Integer userId);
+
 }

@@ -1,7 +1,5 @@
 package c1020g1.social_network.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import javax.persistence.*;
 
 @Entity
@@ -11,24 +9,20 @@ public class PostImage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "post_image_id")
-    private int postImageId;
+    private Integer postImageId;
+
     @ManyToOne
     @JoinColumn(name = "post_id", referencedColumnName = "post_id")
-    @JsonBackReference
     private Post post;
+
     @Column(name = "image")
     private String image;
 
-<<<<<<< HEAD
-
-    public int getPostImageId() {
-=======
     public Integer getPostImageId() {
->>>>>>> post_management
         return postImageId;
     }
 
-    public void setPostImageId(int postImageId) {
+    public void setPostImageId(Integer postImageId) {
         this.postImageId = postImageId;
     }
 

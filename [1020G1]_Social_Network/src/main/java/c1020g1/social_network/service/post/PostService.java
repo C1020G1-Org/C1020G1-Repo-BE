@@ -45,4 +45,11 @@ public interface PostService {
      */
     List<PostImage> getAllImageByPostId(Integer postId);
 
+    /**
+     * Author : DungHA
+     * get all posts in wall of user
+     * @param userId
+     */
+    List<Post> getAllPostInWallUser(Integer userId);
+
 }

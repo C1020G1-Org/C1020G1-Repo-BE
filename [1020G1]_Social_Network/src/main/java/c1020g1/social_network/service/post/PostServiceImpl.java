@@ -79,4 +79,14 @@ public class PostServiceImpl implements PostService {
 
     }
 
+    /**
+     * Author : DungHA
+     * get all posts in wall of user
+     * @param userId
+     */
+    @Override
+    public List<Post> getAllPostInWallUser(Integer userId) {
+        return postRepository.getAllPostInWallUser(userId);
+    }
+
 }

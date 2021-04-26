@@ -24,7 +24,7 @@ public class UserConnection implements Serializable {
     @Column(name = "Provideruserid", length = 255, nullable = false)
     private String providerUserId;
 
-    @Column(name = "Rank", nullable = false)
+    @Column(name = "`Rank`", nullable = false)
     private int rank;
 
     @Column(name = "Displayname", nullable = true)

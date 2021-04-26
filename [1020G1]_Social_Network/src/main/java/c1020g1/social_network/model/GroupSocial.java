@@ -1,32 +1,34 @@
 package c1020g1.social_network.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-<<<<<<< HEAD:[1020G1]_Social_Network/src/main/java/c1020g1/social_network/model/Group.java
-@Table(name = "[group]")
-public class Group {
-
-=======
 @Table(name = "group_social")
 //@JsonIdentityInfo(
 //        generator = ObjectIdGenerators.PropertyGenerator.class,
 //        property = "groupId")
 public class GroupSocial {
->>>>>>> post_management:[1020G1]_Social_Network/src/main/java/c1020g1/social_network/model/GroupSocial.java
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "group_id")
-    private int groupId;
+    private Integer groupId;
+
     @Column(name = "group_name")
     private String groupName;
+
     @Column(name = "group_published")
     private Date groupPublished;
+
     @Column(name = "group_background")
     private String imageBackground;
+
     @Column(name = "group_avatar")
     private String imageAvatarUrl;
+
     @ManyToOne
     @JoinColumn(name = "admin", referencedColumnName = "user_id")
     private User admin;
@@ -34,11 +36,11 @@ public class GroupSocial {
     @Column(name = "scope")
     private String scope;
 
-    public int getGroupId() {
+    public Integer getGroupId() {
         return groupId;
     }
 
-    public void setGroupId(int groupId) {
+    public void setGroupId(Integer groupId) {
         this.groupId = groupId;
     }
 

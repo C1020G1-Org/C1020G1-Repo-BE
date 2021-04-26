@@ -1,12 +1,8 @@
 package c1020g1.social_network.model;
 
 import javax.persistence.*;
-<<<<<<< HEAD
-import java.util.Date;
-=======
 import javax.validation.constraints.NotBlank;
 import java.sql.Timestamp;
->>>>>>> post_management
 import java.util.List;
 
 @Entity
@@ -20,55 +16,37 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "post_id")
     private Integer postId;
+
     @Column(name = "post_content")
+    @NotBlank(message = "Content not blank!!")
     private String postContent;
+
     @Column(name = "post_status")
+    @NotBlank(message = "Status not blank!!")
     private String postStatus;
+
     @Column(name = "post_published")
-    private Date postPublished;
+    private Timestamp postPublished;
+
     @ManyToOne
     @JoinColumn(referencedColumnName = "user_id", name = "user_id")
     private User user;
+
     @ManyToOne
     @JoinColumn(name = "group_id", referencedColumnName = "group_id")
-    private Group group;
-
-    public void setPostId(Integer postId) {
-        this.postId = postId;
-    }
-    @OneToMany(mappedBy = "post")
-<<<<<<< HEAD
-    List<PostImage> postImages;
+    private GroupSocial groupSocial;
 
     @OneToMany(mappedBy = "post")
-    List<ParentComment> parentComments;
-
-    public List<ParentComment> getParentComments() {
-        return parentComments;
-    }
-
-    public void setParentComments(List<ParentComment> parentComments) {
-        this.parentComments = parentComments;
-    }
-
-    public List<PostImage> getPostImages() {
-        return postImages;
-    }
-
-    public void setPostImages(List<PostImage> postImages) {
-        this.postImages = postImages;
-    }
-
-    public int getPostId() {
-=======
     private List<ParentComment> parentComments;
 
+    @OneToMany(mappedBy = "post")
+    private List<PostImage> postImages;
+
     public Integer getPostId() {
->>>>>>> post_management
         return postId;
     }
 
-    public void setPostId(int postId) {
+    public void setPostId(Integer postId) {
         this.postId = postId;
     }
 
@@ -88,11 +66,11 @@ public class Post {
         this.postStatus = postStatus;
     }
 
-    public Date getPostPublished() {
+    public Timestamp getPostPublished() {
         return postPublished;
     }
 
-    public void setPostPublished(Date postPublished) {
+    public void setPostPublished(Timestamp postPublished) {
         this.postPublished = postPublished;
     }
 
@@ -104,11 +82,28 @@ public class Post {
         this.user = user;
     }
 
-    public Group getGroup() {
-        return group;
+    public GroupSocial getGroupSocial() {
+        return groupSocial;
     }
 
-    public void setGroup(Group group) {
-        this.group = group;
+    public void setGroupSocial(GroupSocial groupSocial) {
+        this.groupSocial = groupSocial;
+    }
+
+    public List<ParentComment> getParentComments() {
+        return parentComments;
+    }
+
+    public void setParentComments(List<ParentComment> parentComments) {
+        this.parentComments = parentComments;
+
+    }
+
+    public List<PostImage> getPostImages() {
+        return postImages;
+    }
+
+    public void setPostImages(List<PostImage> postImages) {
+        this.postImages = postImages;
     }
 }

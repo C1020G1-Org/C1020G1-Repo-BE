@@ -1,9 +1,6 @@
 package c1020g1.social_network.controller;
 
-<<<<<<< HEAD
-=======
 import c1020g1.social_network.model.ChildComment;
->>>>>>> post_management
 import c1020g1.social_network.model.ParentComment;
 import c1020g1.social_network.model.Post;
 import c1020g1.social_network.service.comment.CommentService;
@@ -22,19 +19,6 @@ import java.util.List;
 @RequestMapping("/api/comment")
 public class CommentController {
     @Autowired
-<<<<<<< HEAD
-    CommentService commentService ;
-
-    /** get parentComment by ID
-     *  author: DungHA
-     * */
-    @RequestMapping(value = "/comment/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<ParentComment>> getParentComment(@PathVariable("id") Integer id) {
-        System.out.println("Fetching Comment with id " + id);
-        List<ParentComment> parentComments = commentService.findParentCommentByParentCommentId(id);
-        if (parentComments == null) {
-            System.out.println("Comment with id " + id + " not found");
-=======
     private CommentService commentService;
 
     @Autowired
@@ -140,7 +124,6 @@ public class CommentController {
         List<ChildComment> listChildComment = commentService.getAllChildCommentByParentCommentId(parentCommentId);
 
         if(listChildComment.isEmpty())
->>>>>>> post_management
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
         return new ResponseEntity<>(listChildComment, HttpStatus.OK);
@@ -204,5 +187,4 @@ public class CommentController {
 
         return new ResponseEntity<>(fromDb, HttpStatus.OK);
     }
-
 }

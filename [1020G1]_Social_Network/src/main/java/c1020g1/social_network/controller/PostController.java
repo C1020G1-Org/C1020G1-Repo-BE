@@ -1,20 +1,22 @@
 package c1020g1.social_network.controller;
 
-
 import c1020g1.social_network.model.Post;
 
 import c1020g1.social_network.model.PostImage;
 import c1020g1.social_network.model.User;
-import c1020g1.social_network.service.user.UserService;
+import c1020g1.social_network.service.UserService;
 import c1020g1.social_network.service.post.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.sql.Timestamp;
 
@@ -28,19 +30,6 @@ public class PostController {
     private PostService postService;
 
     @Autowired
-<<<<<<< HEAD
-    PostService postService ;
-
-    /** get Post Of User by ID
-       author: DungHA
-     * */
-    @RequestMapping(value = "/post/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<Post>> getPost(@PathVariable("id") Integer id) {
-        System.out.println("Fetching Post with id " + id);
-        List<Post> post = postService.findPostByPostId(id);
-        if (post == null) {
-            System.out.println("Post with id " + id + " not found");
-=======
     private UserService userService;
 
     /**
@@ -59,7 +48,6 @@ public class PostController {
         Page<Post> result = postService.getAllPostInNewsFeed(userId, pageable);
 
         if(result.isEmpty())
->>>>>>> post_management
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
         return new ResponseEntity<>(result, HttpStatus.OK);
@@ -136,7 +124,29 @@ public class PostController {
      */
     @GetMapping("/{postId}")
     public ResponseEntity<Post> getPostById(@PathVariable("postId") Integer postId){
-        return new ResponseEntity<>(postService.getPostById(postId), HttpStatus.OK);
+        Post postFromDb = postService.getPostById(postId);
+
+        if(postFromDb == null){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
+        return new ResponseEntity<>(postFromDb, HttpStatus.OK);
+    }
+
+    /**
+     * Author : DungHA
+     * get all posts in wall of user
+     * @param userId
+     */
+    @GetMapping("/wall/{userId}")
+    public ResponseEntity<List<Post>> getAllPostInWallUser(@PathVariable("userId") Integer userId){
+        List<Post> postInWall = postService.getAllPostInWallUser(userId);
+
+        if(postInWall == null){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
+        return new ResponseEntity<>(postInWall, HttpStatus.OK);
     }
 }
 

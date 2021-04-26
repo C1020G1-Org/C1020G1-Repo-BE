@@ -1,33 +1,33 @@
 package c1020g1.social_network.model;
 
-<<<<<<< HEAD
-=======
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
->>>>>>> post_management
 import javax.persistence.*;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "child_comment")
-<<<<<<< HEAD
-public class ChildComment {
-=======
 //@JsonIdentityInfo(
 //        generator = ObjectIdGenerators.PropertyGenerator.class,
 //        property = "childCommentId")
 public class ChildComment implements Validator {
->>>>>>> post_management
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "child_comment_id")
-    private int childCommentId;
+    private Integer childCommentId;
+
     @Column(name = "content", nullable = false)
     private String content;
+
     @Column(name = "comment_image")
     private String commentImage;
+
+    @Column(name = "comment_time")
+    private Timestamp commentTime;
+
     @ManyToOne
     @JoinColumn(name = "parent_comment_id", referencedColumnName = "parent_comment_id")
     @JsonBackReference
@@ -37,11 +37,11 @@ public class ChildComment implements Validator {
     @JoinColumn(name = "user_id",referencedColumnName = "user_id")
     private User user;
 
-    public int getChildCommentId() {
+    public Integer getChildCommentId() {
         return childCommentId;
     }
 
-    public void setChildCommentId(int childCommentId) {
+    public void setChildCommentId(Integer childCommentId) {
         this.childCommentId = childCommentId;
     }
 
@@ -76,4 +76,26 @@ public class ChildComment implements Validator {
     public void setUser(User user) {
         this.user = user;
     }
+
+    public Timestamp getCommentTime() {
+        return commentTime;
+    }
+
+    public void setCommentTime(Timestamp commentTime) {
+        this.commentTime = commentTime;
+    }
+
+    @Override
+    public boolean supports(Class<?> clazz) {
+        return ChildComment.class.isAssignableFrom(clazz);
+    }
+
+    @Override
+    public void validate(Object target, Errors errors) {
+        ChildComment childComment =(ChildComment) target;
+
+        if(childComment.getContent() == null && childComment.getCommentImage() == null)
+            errors.reject("bad-request");
+    }
+
 }
