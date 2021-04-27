@@ -31,7 +31,7 @@ public class FriendsController {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
             return new ResponseEntity<>(friendsList, HttpStatus.OK);
-        } catch (Exception e){
+        } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
@@ -46,8 +46,8 @@ public class FriendsController {
             }
             friendsService.deleteFriends(friends);
             return new ResponseEntity<>(HttpStatus.OK);
-        }catch (Exception e){
-            return new  ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
     }
@@ -61,7 +61,7 @@ public class FriendsController {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
             return new ResponseEntity<>(friendSuggestList, HttpStatus.OK);
-        } catch (Exception e){
+        } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
@@ -89,9 +89,9 @@ public class FriendsController {
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
 
-            friendRequestService.deleteFriendRequest(friendRequest.getFriendRequestId());
+            friendRequestService.deleteFriendRequest(friendRequest.getReceiveUser().getUserId(),friendRequest.getSendUser().getUserId());
             return new ResponseEntity<>(HttpStatus.OK);
-        } catch (Exception e){
+        } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }

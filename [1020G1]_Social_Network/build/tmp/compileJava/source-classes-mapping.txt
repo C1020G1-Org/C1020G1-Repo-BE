@@ -34,8 +34,8 @@ c1020g1/social_network/service/friends_service/impl/FriendsServiceImpl.java
  c1020g1.social_network.service.friends_service.impl.FriendsServiceImpl
 c1020g1/social_network/model/UserConnection.java
  c1020g1.social_network.model.UserConnection
-c1020g1/social_network/repository/friend_request_repository/FriendRequestRepository.java
- c1020g1.social_network.repository.friend_request_repository.FriendRequestRepository
+c1020g1/social_network/model/PostImage.java
+ c1020g1.social_network.model.PostImage
 c1020g1/social_network/controller/UserController.java
  c1020g1.social_network.controller.UserController
 c1020g1/social_network/repository/ParentCommentRepository.java
@@ -44,14 +44,14 @@ c1020g1/social_network/model/ParentComment.java
  c1020g1.social_network.model.ParentComment
 c1020g1/social_network/repository/PostRepository.java
  c1020g1.social_network.repository.PostRepository
-c1020g1/social_network/controller/FriendRequestController.java
- c1020g1.social_network.controller.FriendRequestController
+c1020g1/social_network/model/Ward.java
+ c1020g1.social_network.model.Ward
 c1020g1/social_network/model/PersistentLogins.java
  c1020g1.social_network.model.PersistentLogins
 c1020g1/social_network/repository/user_repository/UserRepository.java
  c1020g1.social_network.repository.user_repository.UserRepository
-c1020g1/social_network/model/Ward.java
- c1020g1.social_network.model.Ward
+c1020g1/social_network/controller/FriendsController.java
+ c1020g1.social_network.controller.FriendsController
 c1020g1/social_network/service/comment/CommentServiceImpl.java
  c1020g1.social_network.service.comment.CommentServiceImpl
 c1020g1/social_network/model/User.java
@@ -78,9 +78,9 @@ c1020g1/social_network/service/friends_service/FriendsService.java
  c1020g1.social_network.service.friends_service.FriendsService
 c1020g1/social_network/service/post/PostService.java
  c1020g1.social_network.service.post.PostService
-c1020g1/social_network/model/PostImage.java
- c1020g1.social_network.model.PostImage
+c1020g1/social_network/controller/FriendRequestController.java
+ c1020g1.social_network.controller.FriendRequestController
+c1020g1/social_network/repository/friend_request_repository/FriendRequestRepository.java
+ c1020g1.social_network.repository.friend_request_repository.FriendRequestRepository
 c1020g1/social_network/service/friend_request_service/impl/FriendRequestServiceImpl.java
  c1020g1.social_network.service.friend_request_service.impl.FriendRequestServiceImpl
-c1020g1/social_network/controller/FriendsController.java
- c1020g1.social_network.controller.FriendsController

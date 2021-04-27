@@ -21,12 +21,12 @@ public class CommentController {
     // methods for parent-comment
 
     @GetMapping("/parent/{postId}")
-    public ResponseEntity<List<ParentComment>> findAllParentCommentByPostId(@PathVariable("postId") Integer postId){
+    public ResponseEntity<List<ParentComment>> findAllParentCommentByPostId(@PathVariable("postId") Integer postId) {
         return new ResponseEntity<>(commentService.getAllParentCommentByPostId(postId), HttpStatus.OK);
     }
 
     @PostMapping("/parent")
-    public ResponseEntity<ParentComment> createParentComment(@RequestBody ParentComment parentComment){
+    public ResponseEntity<ParentComment> createParentComment(@RequestBody ParentComment parentComment) {
         parentComment.setCommentTime(new Timestamp(System.currentTimeMillis()));
 
         commentService.createParentComment(parentComment);
@@ -35,38 +35,38 @@ public class CommentController {
     }
 
     @PutMapping("/parent/{parentCommentId}")
-    public ResponseEntity<ParentComment> editParentComment(@PathVariable("parentCommentId") Integer parentCommentId, @RequestBody ParentComment parentComment){
+    public ResponseEntity<ParentComment> editParentComment(@PathVariable("parentCommentId") Integer parentCommentId, @RequestBody ParentComment parentComment) {
         ParentComment fromDb = commentService.getParentCommentById(parentCommentId);
 
-        if(fromDb == null)
+        if (fromDb == null)
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
         commentService.editParentComment(parentComment);
 
-        return new ResponseEntity<>(commentService.getParentCommentById(parentCommentId),HttpStatus.OK);
+        return new ResponseEntity<>(commentService.getParentCommentById(parentCommentId), HttpStatus.OK);
     }
 
     @DeleteMapping("/parent/{parentCommentId}")
-    public ResponseEntity<ParentComment> deleteParentComment(@PathVariable("parentCommentId") Integer parentCommentId){
+    public ResponseEntity<ParentComment> deleteParentComment(@PathVariable("parentCommentId") Integer parentCommentId) {
         ParentComment fromDb = commentService.getParentCommentById(parentCommentId);
 
-        if(fromDb == null)
+        if (fromDb == null)
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
         commentService.removeParentComment(parentCommentId);
 
-        return new ResponseEntity<>(fromDb,HttpStatus.OK);
+        return new ResponseEntity<>(fromDb, HttpStatus.OK);
     }
 
     //methods for child-comment
 
     @GetMapping("/child/{parentCommentId}")
-    public ResponseEntity<List<ChildComment>> findAllChildCommentByParentCommentId(@PathVariable("parentCommentId") Integer parentCommentId){
+    public ResponseEntity<List<ChildComment>> findAllChildCommentByParentCommentId(@PathVariable("parentCommentId") Integer parentCommentId) {
         return new ResponseEntity<>(commentService.getAllChildCommentByParentCommentId(parentCommentId), HttpStatus.OK);
     }
 
     @PostMapping("/child")
-    public ResponseEntity<ChildComment> createChildComment(@RequestBody ChildComment childComment){
+    public ResponseEntity<ChildComment> createChildComment(@RequestBody ChildComment childComment) {
         commentService.createChildComment(childComment);
 
         childComment.setCommentTime(new Timestamp(System.currentTimeMillis()));
@@ -75,10 +75,10 @@ public class CommentController {
     }
 
     @PutMapping("/child/{childCommentId}")
-    public ResponseEntity<ChildComment> editChildComment(@PathVariable("childCommentId") Integer childCommentId, @RequestBody ChildComment childComment){
+    public ResponseEntity<ChildComment> editChildComment(@PathVariable("childCommentId") Integer childCommentId, @RequestBody ChildComment childComment) {
         ChildComment fromDb = commentService.getChildCommentById(childCommentId);
 
-        if(fromDb == null)
+        if (fromDb == null)
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
         commentService.editChildComment(childComment);
@@ -87,10 +87,10 @@ public class CommentController {
     }
 
     @DeleteMapping("/child/{childCommentId}")
-    public ResponseEntity<ChildComment> deleteChildComment(@PathVariable("childCommentId") Integer childCommentId){
+    public ResponseEntity<ChildComment> deleteChildComment(@PathVariable("childCommentId") Integer childCommentId) {
         ChildComment fromDb = commentService.getChildCommentById(childCommentId);
 
-        if(fromDb == null)
+        if (fromDb == null)
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
         commentService.removeChildComment(childCommentId);

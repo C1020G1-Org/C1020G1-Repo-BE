@@ -32,7 +32,7 @@ public class PostController {
 //    }
 
     @GetMapping("/newsfeed/{userId}")
-    public ResponseEntity<List<Post>> findAllPostInNewsFeed(@PathVariable("userId") Integer userId){
-        return  new ResponseEntity<>(postService.getAllPostInNewsFeed(userId), HttpStatus.OK);
+    public ResponseEntity<List<Post>> findAllPostInNewsFeed(@PathVariable("userId") Integer userId) {
+        return new ResponseEntity<>(postService.getAllPostInNewsFeed(userId), HttpStatus.OK);
     }
 }
