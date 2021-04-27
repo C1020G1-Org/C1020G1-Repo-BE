@@ -1,6 +1,8 @@
 package c1020g1.social_network.controller;
 
+import c1020g1.social_network.model.Province;
 import c1020g1.social_network.model.User;
+import c1020g1.social_network.service.ProvinceService;
 import c1020g1.social_network.service.SearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,6 +16,9 @@ import java.util.List;
 public class SearchController {
     @Autowired
     SearchService searchService;
+
+    @Autowired
+    ProvinceService provinceService;
 
     /**
      * @author KienTH
@@ -42,11 +47,20 @@ public class SearchController {
                                        @RequestParam(value = "occupation", required = false) String occupation,
                                        @RequestParam(value = "favourites", required = false) List<String> favourites) {
         Integer birthdayInt;
-        if (birthday.equals("undefined")) {
+        if (birthday.equals("undefined") || birthday.equals("Not select")) {
             birthdayInt = null;
         } else {
             birthdayInt = Integer.parseInt(birthday);
         }
+
+        if (province.equals("undefined") || province.equals("Not select")) {
+            province = null;
+        }
+
+        if (gender.equals("undefined") || gender.equals("Not select")) {
+            gender = null;
+        }
+
         List<User> list = searchService.advancedSearch(name, birthdayInt, gender, province,
                 district, ward, occupation, favourites);
 
@@ -72,5 +86,11 @@ public class SearchController {
             return new ResponseEntity<List<User>>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<List<User>>(list, HttpStatus.OK);
+    }
+
+    @GetMapping("/searching/province")
+    public ResponseEntity<Iterable<Province>> getAllProvince() {
+        Iterable<Province> list = provinceService.getAllProvince();
+        return new ResponseEntity<Iterable<Province>>(list, HttpStatus.OK);
     }
 }
