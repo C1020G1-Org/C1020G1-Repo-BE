@@ -53,7 +53,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // tắt csrf
         httpSecurity.cors().and().csrf().disable()
                 // tắt xác thực cho các trang này
-                .authorizeRequests().antMatchers("/login", "/register", "/recover/**", "/oauth/**").permitAll().
+                .authorizeRequests().antMatchers("/login", "/register", "misc/**", "/recover/**", "/oauth/**").permitAll().
                 antMatchers(HttpMethod.OPTIONS, "/**").permitAll().
                 // các trang còn lại phải xác thực
                         anyRequest().authenticated().and().
