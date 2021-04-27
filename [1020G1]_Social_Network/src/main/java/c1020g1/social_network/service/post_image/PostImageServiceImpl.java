@@ -25,7 +25,7 @@ public class PostImageServiceImpl implements PostImageService {
     }
 
     @Override
-    public void deletePostImage(Integer postId) {
-        postImageRepository.deleteImagePost(postId);
+    public void deletePostImage(Integer postImageId) {
+        postImageRepository.deleteImagePost(postImageId);
     }
 }

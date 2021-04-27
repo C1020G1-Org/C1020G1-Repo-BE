@@ -1,9 +1,6 @@
 package c1020g1.social_network.controller;
 
-import c1020g1.social_network.model.Post;
-import c1020g1.social_network.model.PostDTO;
-import c1020g1.social_network.model.PostImage;
-import c1020g1.social_network.model.User;
+import c1020g1.social_network.model.*;
 import c1020g1.social_network.service.post.PostService;
 import c1020g1.social_network.service.post_image.PostImageService;
 import c1020g1.social_network.service.user.UserService;
@@ -105,20 +102,28 @@ public class PostController {
      * edit post
      */
     @PutMapping("/{postId}")
-    public ResponseEntity<Post> editPost(@PathVariable("postId") Integer postId, @Validated @RequestBody Post post, BindingResult bindingResult) {
+    @Transactional
+    public ResponseEntity<PostEditDTO> editPost(@PathVariable("postId") Integer postId, @Validated @RequestBody PostEditDTO postEditDTO, BindingResult bindingResult) {
         if (bindingResult.hasFieldErrors()) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        Post post1 = postService.getPostById(postId);
-        if (post1 == null) {
-            System.out.println("Post with id " + postId + " not found!");
-            return new ResponseEntity<Post>(HttpStatus.NOT_FOUND);
-        }
-        post1.setPostContent(postService.encodeStringUrl(post.getPostContent()));
-        post1.setPostStatus(post.getPostStatus());
+        Post post = postService.getPostById(postId);
+        if (post != null) {
+            post.setPostContent(postService.encodeStringUrl(postEditDTO.getPost().getPostContent()));
+            post.setPostStatus(post.getPostStatus());
+            postService.editPost(post);
+            for (PostImage postImage : postEditDTO.getUpdateImages()) {
+                postImageService.createPostImage(postId, postImage.getImage());
+            }
+            for (PostImage postImage : postEditDTO.getDeleteImages()) {
+                postImageService.deletePostImage(postImage.getPostImageId());
+            }
+            return new ResponseEntity<PostEditDTO>(postEditDTO, HttpStatus.OK);
 
-        postService.editPost(post1);
-        return new ResponseEntity<Post>(post1, HttpStatus.OK);
+        } else {
+            System.out.println("Post with id " + postId + " not found!");
+            return new ResponseEntity<PostEditDTO>(HttpStatus.NOT_FOUND);
+        }
     }
 
     /**
@@ -126,13 +131,17 @@ public class PostController {
      * get post by postId
      */
     @GetMapping("/{postId}")
-    public ResponseEntity<Post> getPostById(@PathVariable("postId") Integer postId) {
+    public ResponseEntity<PostEditDTO> getPostById(@PathVariable("postId") Integer postId) {
         Post post = postService.getPostById(postId);
-        if (post == null) {
+        PostEditDTO postEditDTO = new PostEditDTO();
+        if (post != null) {
+            post.setPostContent(postService.decodeStringUrl(post.getPostContent()));
+            postEditDTO.setPost(post);
+            postEditDTO.setPostImages(postImageService.getAllImageByPostId(postId));
+            return new ResponseEntity<PostEditDTO>(postEditDTO, HttpStatus.OK);
+        } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        post.setPostContent(postService.decodeStringUrl(post.getPostContent()));
-        return new ResponseEntity<Post>(post, HttpStatus.OK);
     }
 }
 

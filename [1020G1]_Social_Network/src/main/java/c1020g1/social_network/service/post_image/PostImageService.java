@@ -10,5 +10,5 @@ public interface PostImageService {
 
     void createPostImage(Integer postId, String image);
 
-    void deletePostImage(Integer postId);
+    void deletePostImage(Integer postImageId);
 }

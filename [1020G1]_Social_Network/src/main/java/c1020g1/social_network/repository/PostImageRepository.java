@@ -22,8 +22,8 @@ public interface PostImageRepository extends JpaRepository<PostImage, Integer> {
     void createImagePost(@Param("postId") Integer postId, @Param("image") String image);
 
     @Modifying
-    @Query(value = "delete from post_image where post_id = ?1", nativeQuery = true)
-    void deleteImagePost(Integer postId);
+    @Query(value = "delete from post_image where post_image_id = ?1", nativeQuery = true)
+    void deleteImagePost(Integer postImageId);
 
 
 }
