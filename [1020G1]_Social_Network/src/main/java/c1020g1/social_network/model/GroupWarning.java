@@ -12,7 +12,6 @@ public class GroupWarning {
     @Column(name = "group_warning_id")
     private Integer groupWarningId;
 
-
     @Column(name = "warning_content")
     private String warningContent;
 

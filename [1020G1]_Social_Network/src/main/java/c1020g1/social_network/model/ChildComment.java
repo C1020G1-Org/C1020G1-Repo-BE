@@ -1,6 +1,6 @@
 package c1020g1.social_network.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.springframework.validation.Errors;
@@ -20,7 +20,6 @@ public class ChildComment implements Validator {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "child_comment_id")
     private Integer childCommentId;
-
 
     @Column(name = "content", nullable = false)
     private String content;

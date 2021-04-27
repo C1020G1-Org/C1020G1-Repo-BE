@@ -19,4 +19,6 @@ public interface PostService {
 
     List<PostImage> getAllImageByPostId(Integer postId);
 
+    List<Post> findAllPostGroup(Integer id);
+
 }

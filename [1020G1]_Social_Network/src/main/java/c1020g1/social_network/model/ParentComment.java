@@ -13,9 +13,6 @@ import java.util.List;
 
 @Entity
 @Table(name = "parent_comment")
-@JsonIdentityInfo(
-        generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "parentCommentId")
 public class ParentComment implements Validator {
 
     @Id
@@ -34,6 +31,7 @@ public class ParentComment implements Validator {
 
     @ManyToOne
     @JoinColumn(name = "post_id", referencedColumnName = "post_id")
+    @JsonBackReference
     private Post post;
 
     @ManyToOne

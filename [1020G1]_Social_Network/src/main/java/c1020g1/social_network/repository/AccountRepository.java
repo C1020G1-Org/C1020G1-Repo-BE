@@ -6,10 +6,16 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository
-
 public interface AccountRepository extends JpaRepository<Account, Integer> {
+    @Transactional
+    @Modifying
+
+    @Query(value = "update account\n" + "set password = ?2\n" + "where account_id = ?1",nativeQuery = true)
+    void changePassword(Integer accountId, String newPassword);
+
 
     @Modifying
     @Query(value = "INSERT INTO account (account_name, password) VALUES (:#{#account.accountName}, :#{#account.password})",nativeQuery = true)

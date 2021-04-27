@@ -1,21 +1,26 @@
 package c1020g1.social_network.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "user")
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "userId")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     private Integer userId;
-
     @Column(name = "username", nullable = false)
     @NotBlank(message = "required")
     private String userName;
@@ -67,9 +72,11 @@ public class User {
 
     @OneToOne
     @JoinColumn(name = "account_id", referencedColumnName = "account_id",nullable = false)
-    @JsonBackReference
     private Account account;
 
+
+    @OneToMany(mappedBy = "user")
+    private Set<GroupRequest> groupRequests;
     public Integer getUserId() {
         return userId;
     }

@@ -1,8 +1,5 @@
 package c1020g1.social_network.model;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-
 import javax.persistence.*;
 import java.util.Date;
 

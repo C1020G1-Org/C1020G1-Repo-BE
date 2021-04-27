@@ -23,6 +23,15 @@ public class JwtAccountDetailService implements UserDetailsService {
     @Autowired
     PasswordEncoder passwordEncoder;
 
+    /**
+     * Method: get account from database by accounName input
+     * if account null throw exeption, if have account build Userdetails
+     * Author: DươngLQ
+     * @param accountName
+     * @return
+     * @throws UsernameNotFoundException
+     */
+
     @Override
     public UserDetails loadUserByUsername(String accountName) throws UsernameNotFoundException {
         Account account = accountRepository.getAccountByName(accountName);
@@ -32,19 +41,22 @@ public class JwtAccountDetailService implements UserDetailsService {
         return AccountPrincipleFactory.build(account);
     }
 
-    public Account saveSocial(String accountName) {
-        Account account = new Account();
-        account.setAccountName(accountName);
-        account.setPassword(passwordEncoder.encode(secretPwt));
-        return accountRepository.save(account);
-    }
+    /**
+     * Method: change password
+     * Author: DươngLQ
+     * @param accountName
+     */
 
     public void update(String accountName) {
         accountRepository.updateAccount(passwordEncoder.encode(secretPwt),accountName);
     }
 
-
-
+    /**
+     * Method: get account from database by account name
+     * Authỏ: DươngLQ
+     * @param accountName
+     * @return
+     */
     public Account getAccount(String accountName){
         return accountRepository.getAccountByName(accountName);
     }

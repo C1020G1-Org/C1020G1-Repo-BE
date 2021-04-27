@@ -20,30 +20,30 @@ public class JwtTokenUtil {
     @Value("${jwt.secret}")
     private String secret;
 
-    // Lấy tên của user từ token
+
     public String getAccountNameFromToken(String token) {
         final Claims claims = getAllClaimsFromToken(token);
         return claims.getSubject();
     }
 
-    // Lấy ngày hết hiệu lực của token
+
     public Date getExpirationDateFromToken(String token) {
         final Claims claims = getAllClaimsFromToken(token);
         return claims.getExpiration();
     }
 
-    // Sử dụng khóa ở trên để giải mã token
+
     private Claims getAllClaimsFromToken(String token) {
         return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
     }
 
-    // Kiểm tra xem token có còn trong thời gian hiệu lực
+
     private Boolean isTokenExpired(String token) {
         final Date expiration = getExpirationDateFromToken(token);
         return expiration.before(new Date());
     }
 
-    // Tạo một token để trả về cho người dùng
+
     public String generateToken(UserDetails userDetails) {
         Map<String, Object> claims = new HashMap<>();
         return doGenerateToken(claims, userDetails.getUsername());

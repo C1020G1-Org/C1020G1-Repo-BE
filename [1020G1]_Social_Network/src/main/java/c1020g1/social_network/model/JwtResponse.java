@@ -10,6 +10,7 @@ public class JwtResponse implements Serializable {
     private static final long serialVersionUID = -8091879091924046844L;
     private final String jwtToken;
     private User user;
+    private String accountName;
 
     public JwtResponse(String jwtToken) {
         this.jwtToken = jwtToken;
@@ -31,4 +32,12 @@ public class JwtResponse implements Serializable {
         return this.jwtToken;
     }
 
+
+    public String getAccountName() {
+        return accountName;
+    }
+
+    public void setAccountName(String accountName) {
+        this.accountName = accountName;
+    }
 }

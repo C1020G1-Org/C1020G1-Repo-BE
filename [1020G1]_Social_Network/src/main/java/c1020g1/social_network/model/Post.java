@@ -1,5 +1,6 @@
 package c1020g1.social_network.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import javax.validation.constraints.NotBlank;
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -27,15 +28,15 @@ public class Post {
 
     @ManyToOne
     @JoinColumn(referencedColumnName = "user_id", name = "user_id")
+    @JsonBackReference
     private User user;
-
-    @ManyToOne
-    @JoinColumn(name = "group_id", referencedColumnName = "group_id")
-    private GroupSocial groupSocial;
 
     @OneToMany(mappedBy = "post")
     private List<ParentComment> parentComments;
 
+    @ManyToOne
+    @JoinColumn(name = "group_id", referencedColumnName = "group_id")
+    private GroupSocial group;
 
     public Integer getPostId() {
         return postId;
@@ -77,13 +78,12 @@ public class Post {
         this.user = user;
     }
 
-    public GroupSocial getGroupSocial() {
-        return groupSocial;
+    public GroupSocial getGroup() {
+        return group;
     }
 
-    public void setGroupSocial(GroupSocial groupSocial) {
-        this.groupSocial = groupSocial;
-
+    public void setGroup(GroupSocial group) {
+        this.group = group;
     }
 
     public List<ParentComment> getParentComments() {

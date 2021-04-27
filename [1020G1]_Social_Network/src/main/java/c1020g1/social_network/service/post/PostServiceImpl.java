@@ -29,10 +29,10 @@ public class PostServiceImpl implements PostService {
     @Override
     @Transactional
     public void createPost(Post post) {
-        if (post.getGroupSocial() == null) {
+        if (post.getGroup() == null) {
             postRepository.createPost(post.getPostContent(), post.getPostStatus(), post.getPostPublished(), post.getUser().getUserId());
         } else {
-            postRepository.createPostInGroup(post.getPostContent(), post.getPostStatus(), post.getPostPublished(), post.getUser().getUserId(), post.getGroupSocial().getGroupId());
+            postRepository.createPostInGroup(post.getPostContent(), post.getPostStatus(), post.getPostPublished(), post.getUser().getUserId(), post.getGroup().getGroupId());
         }
     }
 
@@ -53,4 +53,8 @@ public class PostServiceImpl implements PostService {
 
     }
 
+    @Override
+    public List<Post> findAllPostGroup(Integer id) {
+        return postRepository.findAllPostGroup(id);
+    }
 }
