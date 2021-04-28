@@ -55,9 +55,8 @@ public class EditController {
     }
 
     @GetMapping("/user/province")
-    public List<Province> getProvinceList() {
-        return provinceService.getProvinceList();
-    }
+    public Iterable<Province> getProvinceList() { return provinceService.getAllProvince(); }
+
 }
 
 

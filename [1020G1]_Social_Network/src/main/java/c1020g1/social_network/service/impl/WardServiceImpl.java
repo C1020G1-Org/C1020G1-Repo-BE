@@ -10,12 +10,28 @@ import java.util.List;
 
 @Service
 public class WardServiceImpl implements WardService {
-    @Autowired
-    WardRepository wardRepository;
 
+    /**
+     * Method: get ward list
+     * author: ThinhTHB
+     * @return
+     */
     @Override
     public List<Ward> getWardList() {
         return wardRepository.getWardList();
     }
 
+    @Autowired
+    private WardRepository wardRepository;
+
+    /**
+     * author: PhucPT
+     * method: return iterables of wards by district id
+     * @param districtId
+     * @return
+     */
+    @Override
+    public Iterable<Ward> getWardByDistrictId(int districtId) {
+        return wardRepository.findAllByDistrictId(districtId);
+    }
 }

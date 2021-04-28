@@ -7,6 +7,9 @@ import java.util.List;
 
 @Service
 public interface WardService {
+    //ThinhTHb
     List<Ward> getWardList();
 
+    //PhucPT
+    Iterable<Ward> getWardByDistrictId(int district);
 }
