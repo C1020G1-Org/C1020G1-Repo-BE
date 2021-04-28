@@ -18,7 +18,8 @@ public class WardServiceImpl implements WardService {
      */
     @Override
     public List<Ward> getWardList() {
-        return wardRepository.getWardList(); }
+        return wardRepository.getWardList();
+    }
 
     @Autowired
     private WardRepository wardRepository;

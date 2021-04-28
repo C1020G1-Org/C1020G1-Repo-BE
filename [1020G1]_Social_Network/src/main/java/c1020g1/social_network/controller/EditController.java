@@ -9,8 +9,10 @@ import c1020g1.social_network.service.EditService;
 import c1020g1.social_network.service.ProvinceService;
 import c1020g1.social_network.service.WardService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -28,27 +30,33 @@ public class EditController {
     @Autowired
     ProvinceService provinceService;
 
+
     @GetMapping("/user/{id}")
-    public User getUserById(@PathVariable Integer id){
+    public User getUserById(@PathVariable Integer id) {
         return editService.getUserInfoById(id);
     }
 
 
-    @PostMapping("user/edit")
-    public void save(@RequestBody User user){
-        editService.save(user);
+    @PutMapping("user/edit/{userId}")
+    public void save(@RequestBody @Valid User user, @PathVariable Integer userId) {
+        editService.updateUser(user);
     }
 
+
     @GetMapping("/user/ward")
-    public List<Ward> getWard(){
+    public List<Ward> getWard() {
         return wardService.getWardList();
     }
 
+
     @GetMapping("/user/district")
-    public List<District> getDistrict() { return districtService.getDistrictList(); }
+    public List<District> getDistrict() {
+        return districtService.getDistrictList();
+    }
 
     @GetMapping("/user/province")
     public Iterable<Province> getProvinceList() { return provinceService.getAllProvince(); }
+
 }
 
 
