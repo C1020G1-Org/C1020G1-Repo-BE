@@ -1,7 +1,6 @@
 package c1020g1.social_network.repository;
 
 import c1020g1.social_network.model.District;
-import c1020g1.social_network.model.Ward;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
