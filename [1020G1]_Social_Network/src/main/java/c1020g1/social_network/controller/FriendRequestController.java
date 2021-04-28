@@ -17,13 +17,13 @@ import java.util.List;
 public class FriendRequestController {
 
     @Autowired
-    FriendRequestService friendRequestService;
+    private FriendRequestService friendRequestService;
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     @Autowired
-    FriendsService friendsService;
+    private FriendsService friendsService;
 
     /**
      * Author : TungNT

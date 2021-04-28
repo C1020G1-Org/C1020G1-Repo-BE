@@ -16,10 +16,10 @@ import java.util.List;
 public class FriendRequestServiceImpl implements FriendRequestService {
 
     @Autowired
-    FriendRequestRepository friendRequestRepository;
+    private FriendRequestRepository friendRequestRepository;
 
     @Autowired
-    FriendsService friendsService;
+    private FriendsService friendsService;
 
     /**
      * Author:  TungNT
