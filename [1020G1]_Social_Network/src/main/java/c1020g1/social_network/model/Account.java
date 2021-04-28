@@ -10,8 +10,10 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "account_id")
     public int accountId;
+
     @Column(name = "account_name",nullable = false)
     public String accountName;
+
     @Column(name = "password")
     public String password;
 

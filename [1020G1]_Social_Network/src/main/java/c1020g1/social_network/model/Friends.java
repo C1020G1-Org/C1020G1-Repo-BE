@@ -10,9 +10,11 @@ public class Friends {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "friends_id")
     private Integer friendsId;
+
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     private User user;
+
     @ManyToOne
     @JoinColumn(name = "friend_id", referencedColumnName = "user_id")
     private User friend;

@@ -1,34 +1,45 @@
 package c1020g1.social_network.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "post")
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "postId")
 public class Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "post_id")
-    private int postId;
+    private Integer postId;
+
     @Column(name = "post_content")
     private String postContent;
+
     @Column(name = "post_status")
     private String postStatus;
+
     @Column(name = "post_published")
-    private Date postPublished;
+    private Timestamp postPublished;
+
     @ManyToOne
     @JoinColumn(referencedColumnName = "user_id", name = "user_id")
     private User user;
+
     @ManyToOne
     @JoinColumn(name = "group_id", referencedColumnName = "group_id")
-    private Group group;
+    private GroupSocial groupSocial;
 
-    public int getPostId() {
+    public Integer getPostId() {
         return postId;
     }
 
-    public void setPostId(int postId) {
+    public void setPostId(Integer postId) {
         this.postId = postId;
     }
 
@@ -48,11 +59,11 @@ public class Post {
         this.postStatus = postStatus;
     }
 
-    public Date getPostPublished() {
+    public Timestamp getPostPublished() {
         return postPublished;
     }
 
-    public void setPostPublished(Date postPublished) {
+    public void setPostPublished(Timestamp postPublished) {
         this.postPublished = postPublished;
     }
 
@@ -64,11 +75,11 @@ public class Post {
         this.user = user;
     }
 
-    public Group getGroup() {
-        return group;
+    public GroupSocial getGroupSocial() {
+        return groupSocial;
     }
 
-    public void setGroup(Group group) {
-        this.group = group;
+    public void setGroupSocial(GroupSocial groupSocial) {
+        this.groupSocial = groupSocial;
     }
 }

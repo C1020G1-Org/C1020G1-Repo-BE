@@ -2,7 +2,6 @@ package c1020g1.social_network.service.friend_request_service.impl;
 
 import c1020g1.social_network.model.FriendRequest;
 import c1020g1.social_network.model.Friends;
-import c1020g1.social_network.model.User;
 import c1020g1.social_network.repository.friend_request_repository.FriendRequestRepository;
 import c1020g1.social_network.service.friend_request_service.FriendRequestService;
 import c1020g1.social_network.service.friends_service.FriendsService;
@@ -17,16 +16,24 @@ import java.util.List;
 public class FriendRequestServiceImpl implements FriendRequestService {
 
     @Autowired
-    FriendRequestRepository friendRequestRepository;
+    private FriendRequestRepository friendRequestRepository;
 
     @Autowired
-    FriendsService friendsService;
+    private FriendsService friendsService;
 
+    /**
+     * Author:  TungNT
+     * Find All Friend Request With Id of User.
+     */
     @Override
     public List<FriendRequest> findAllFriendRequest(Integer idUser) {
         return friendRequestRepository.findAllFriendRequest(idUser);
     }
 
+    /**
+     * Author: TungNT
+     * Save Friend Request
+     */
     @Override
     public String saveFriendRequest(FriendRequest newFriendRequest) {
 
@@ -53,7 +60,7 @@ public class FriendRequestServiceImpl implements FriendRequestService {
         List<Friends> sendUserFriends =
                 friendsService.findAllFriendById(newFriendRequest.getSendUser().getUserId());
         for (Friends friends : sendUserFriends) {
-            if (newFriendRequest.getReceiveUser().getUserId() == friends.getFriendsId()){
+            if (newFriendRequest.getReceiveUser().getUserId() == friends.getFriendsId()) {
                 return "NG";
             }
         }
@@ -62,11 +69,15 @@ public class FriendRequestServiceImpl implements FriendRequestService {
         return "OK";
     }
 
+    /**
+     * Author: TungNT
+     * Delete Friend Request
+     */
     @Override
-    public String deleteFriendRequest(Integer idFriendRequest) {
+    public String deleteFriendRequest(Integer idReceiverUser, Integer idSendUser) {
 
-        if(friendRequestRepository.findByFriendRequestId(idFriendRequest) != null){
-            friendRequestRepository.deleteFriendRequestByFriendRequestId(idFriendRequest);
+        if (friendRequestRepository.findByReceiverUserIdAndSendUserId(idReceiverUser,idSendUser) != null) {
+            friendRequestRepository.deleteFriendRequestByFriendRequestId(idReceiverUser, idSendUser);
             return "OK";
         }
         return "NG";
