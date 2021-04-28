@@ -21,7 +21,7 @@ import java.util.stream.Stream;
 public class PostServiceImpl implements PostService {
     @Autowired
     PostRepository postRepository;
-  
+
     @Autowired
     private PostImageRepository postImageRepository;
 
@@ -71,7 +71,7 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public String encodeStringUrl(String url) {
-        String encodedUrl =null;
+        String encodedUrl = null;
         try {
             encodedUrl = URLEncoder.encode(url, "UTF-8");
         } catch (UnsupportedEncodingException e) {
@@ -82,7 +82,7 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public String decodeStringUrl(String encodedUrl) {
-        String decodedUrl =null;
+        String decodedUrl = null;
         try {
             decodedUrl = URLDecoder.decode(encodedUrl, "UTF-8");
         } catch (UnsupportedEncodingException e) {
@@ -94,5 +94,11 @@ public class PostServiceImpl implements PostService {
     @Override
     public Post getRecentPostByUserId(Integer userId) {
         return postRepository.getRecentPostByUserId(userId);
+    }
+
+    @Override
+    @Transactional
+    public void deletePostById(Integer postId) {
+        postRepository.deletePostByID(postId);
     }
 }

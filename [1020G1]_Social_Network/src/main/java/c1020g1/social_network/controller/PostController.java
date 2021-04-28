@@ -143,5 +143,16 @@ public class PostController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
+    @DeleteMapping("/{postId}")
+    public ResponseEntity<Post> deletePostById(@PathVariable("postId") Integer postId) {
+        Post post = postService.getPostById(postId);
+        if (post == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        } else {
+            postService.deletePostById(postId);
+            return new ResponseEntity<Post>(post,HttpStatus.OK);
+        }
+    }
 }
 

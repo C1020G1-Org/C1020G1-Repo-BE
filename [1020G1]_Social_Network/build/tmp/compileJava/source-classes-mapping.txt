@@ -22,8 +22,8 @@ c1020g1/social_network/model/FavouriteUser.java
  c1020g1.social_network.model.FavouriteUser
 c1020g1/social_network/model/Friends.java
  c1020g1.social_network.model.Friends
-c1020g1/social_network/service/post/PostService.java
- c1020g1.social_network.service.post.PostService
+c1020g1/social_network/model/PostEditDTO.java
+ c1020g1.social_network.model.PostEditDTO
 c1020g1/social_network/model/Status.java
  c1020g1.social_network.model.Status
 c1020g1/social_network/model/Favourite.java
@@ -56,23 +56,23 @@ c1020g1/social_network/model/ChildComment.java
  c1020g1.social_network.model.ChildComment
 c1020g1/social_network/service/comment/CommentServiceImpl.java
  c1020g1.social_network.service.comment.CommentServiceImpl
-c1020g1/social_network/controller/CommentController.java
- c1020g1.social_network.controller.CommentController
+c1020g1/social_network/service/post_image/PostImageServiceImpl.java
+ c1020g1.social_network.service.post_image.PostImageServiceImpl
 c1020g1/social_network/service/comment/CommentService.java
  c1020g1.social_network.service.comment.CommentService
-c1020g1/social_network/repository/PostRepository.java
- c1020g1.social_network.repository.PostRepository
+c1020g1/social_network/service/post_image/PostImageService.java
+ c1020g1.social_network.service.post_image.PostImageService
 c1020g1/social_network/repository/ChildCommentRepository.java
  c1020g1.social_network.repository.ChildCommentRepository
 c1020g1/social_network/repository/PostImageRepository.java
  c1020g1.social_network.repository.PostImageRepository
-c1020g1/social_network/service/post_image/PostImageServiceImpl.java
- c1020g1.social_network.service.post_image.PostImageServiceImpl
 c1020g1/social_network/service/post/PostServiceImpl.java
  c1020g1.social_network.service.post.PostServiceImpl
-c1020g1/social_network/service/post_image/PostImageService.java
- c1020g1.social_network.service.post_image.PostImageService
-c1020g1/social_network/model/PostEditDTO.java
- c1020g1.social_network.model.PostEditDTO
+c1020g1/social_network/service/post/PostService.java
+ c1020g1.social_network.service.post.PostService
+c1020g1/social_network/repository/PostRepository.java
+ c1020g1.social_network.repository.PostRepository
+c1020g1/social_network/controller/CommentController.java
+ c1020g1.social_network.controller.CommentController
 c1020g1/social_network/controller/PostController.java
  c1020g1.social_network.controller.PostController

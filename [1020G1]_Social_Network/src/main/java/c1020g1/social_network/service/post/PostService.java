@@ -23,4 +23,6 @@ public interface PostService {
     String decodeStringUrl(String encodedUrl);
 
     Post getRecentPostByUserId(Integer userId);
+
+    void deletePostById(Integer postId);
 }

@@ -58,4 +58,8 @@ public interface PostRepository extends JpaRepository<Post, Integer> {
 
     @Query(value = "SELECT * FROM post WHERE post.user_id = :userId ORDER BY post.post_id DESC LIMIT 1", nativeQuery = true)
     Post getRecentPostByUserId(Integer userId);
+
+    @Modifying
+    @Query(value = "DELETE FROM post WHERE post_id = ?1", nativeQuery = true)
+    void deletePostByID(Integer postId);
 }
