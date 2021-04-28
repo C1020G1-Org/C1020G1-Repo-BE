@@ -13,7 +13,7 @@ public interface SearchService {
     List<User> advancedSearch(String name, Integer birthday, String gender, String province, String district, String ward,
                               String occupation, List<String> favorites);
 
-    List<User> recommendation(Integer id, Date birthday, Integer province, List<String> favorites);
+    List<User> recommendation(Integer id, Date birthday, String gender, Integer province, List<String> favorites);
 
     List<String> getListFavourite(Integer id);
 }

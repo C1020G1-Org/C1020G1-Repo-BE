@@ -53,17 +53,18 @@ public interface SearchRepository extends JpaRepository<User, Integer> {
             "join Ward w on u.ward.wardId = w.wardId " +
             "join District d on w.district.districtId = d.districtId " +
             "join Province p on d.province.provinceId = p.provinceId " +
-            "join FavouriteUser f on u.userId = f.user.userId " +
-            "join Favourite fv on f.favourite.favouriteId = fv.favouriteId " +
-            "where (((function('year', u.birthday)) between ((function('year', :birthday)) - 5) " +
+            "left join FavouriteUser f on u.userId = f.user.userId " +
+            "left join Favourite fv on f.favourite.favouriteId = fv.favouriteId " +
+            "where (((((function('year', u.birthday)) between ((function('year', :birthday)) - 5) " +
             "and ((function('year', :birthday)) + 5))) and " +
-            "(u.ward.district.province.provinceId = :province) and " +
-            "(fv.favouriteName in :favourites) and " +
+            "(u.gender <> :gender) and " +
+            "(u.ward.district.province.provinceId = :province)) or " +
+            "(fv.favouriteName in :favourites)) and " +
             "((u not in (select u from User " +
             "join Friends fr on u.userId = fr.friend.userId " +
             "where fr.user.userId = :id) and u.userId <> :id )) " +
             "group by u.userName")
-    List<User> recommendation(Integer id, Date birthday, Integer province, List<String> favourites);
+    List<User> recommendation(Integer id, Date birthday, String gender, Integer province, List<String> favourites);
 
     @Query("select u from User u " +
             "join Ward w on u.ward.wardId = w.wardId " +
@@ -71,10 +72,11 @@ public interface SearchRepository extends JpaRepository<User, Integer> {
             "join Province p on d.province.provinceId = p.provinceId " +
             "where (((function('year', u.birthday)) between ((function('year', :birthday)) - 5) " +
             "and ((function('year', :birthday)) + 5))) and " +
+            "(u.gender <> :gender) and " +
             "(u.ward.district.province.provinceId = :province) and " +
             "((u not in (select u from User " +
             "join Friends fr on u.userId = fr.friend.userId " +
             "where fr.user.userId = :id) and u.userId <> :id )) " +
             "group by u.userName")
-    List<User> recommendationNoFavourite(Integer id, Date birthday, Integer province);
+    List<User> recommendationNoFavourite(Integer id, Date birthday, String gender, Integer province);
 }

@@ -40,12 +40,12 @@ public class SearchServiceImpl implements SearchService {
     }
 
     @Override
-    public List<User> recommendation(Integer id, Date birthday, Integer province,
+    public List<User> recommendation(Integer id, Date birthday, String gender, Integer province,
                            List<String> favorites) {
         if (favorites.isEmpty()){
-            return searchRepository.recommendationNoFavourite(id, birthday, province);
+            return searchRepository.recommendationNoFavourite(id, birthday, gender, province);
         }
-        return searchRepository.recommendation(id, birthday, province, favorites);
+        return searchRepository.recommendation(id, birthday, gender, province, favorites);
     }
 
     @Override

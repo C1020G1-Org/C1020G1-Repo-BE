@@ -14,8 +14,8 @@ c1020g1/social_network/service/impl/AccountServiceImpl.java
  c1020g1.social_network.service.impl.AccountServiceImpl
 c1020g1/social_network/repository/ParentCommentRepository.java
  c1020g1.social_network.repository.ParentCommentRepository
-c1020g1/social_network/service/SearchService.java
- c1020g1.social_network.service.SearchService
+c1020g1/social_network/service/friend_request_service/FriendRequestService.java
+ c1020g1.social_network.service.friend_request_service.FriendRequestService
 c1020g1/social_network/service/impl/UserServiceImpl.java
  c1020g1.social_network.service.impl.UserServiceImpl
 c1020g1/social_network/service/DistrictService.java
@@ -124,8 +124,8 @@ c1020g1/social_network/config/MailConfig.java
  c1020g1.social_network.config.MailConfig
 c1020g1/social_network/validator/AccountDuplicatedValidator.java
  c1020g1.social_network.validator.AccountDuplicatedValidator
-c1020g1/social_network/controller/SearchController.java
- c1020g1.social_network.controller.SearchController
+c1020g1/social_network/service/impl/WarningServiceImpl.java
+ c1020g1.social_network.service.impl.WarningServiceImpl
 c1020g1/social_network/service/GroupService.java
  c1020g1.social_network.service.GroupService
 c1020g1/social_network/controller/PostController.java
@@ -186,11 +186,13 @@ c1020g1/social_network/service/impl/GroupUserServiceImpl.java
  c1020g1.social_network.service.impl.GroupUserServiceImpl
 c1020g1/social_network/service/impl/ProvinceServiceImpl.java
  c1020g1.social_network.service.impl.ProvinceServiceImpl
-c1020g1/social_network/service/friend_request_service/FriendRequestService.java
- c1020g1.social_network.service.friend_request_service.FriendRequestService
-c1020g1/social_network/service/impl/WarningServiceImpl.java
- c1020g1.social_network.service.impl.WarningServiceImpl
 c1020g1/social_network/repository/SearchRepository.java
  c1020g1.social_network.repository.SearchRepository
+c1020g1/social_network/model/dto/UserFavourites.java
+ c1020g1.social_network.model.dto.UserFavourites
+c1020g1/social_network/controller/SearchController.java
+ c1020g1.social_network.controller.SearchController
+c1020g1/social_network/service/SearchService.java
+ c1020g1.social_network.service.SearchService
 c1020g1/social_network/service/impl/SearchServiceImpl.java
  c1020g1.social_network.service.impl.SearchServiceImpl
