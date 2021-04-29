@@ -43,7 +43,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     List<User> inviteFriends(@Param("id") int groupId,@Param("user_id") int userId);
 
     @Modifying
-    @Query(value = "INSERT INTO user (username,birthday,gender,occupation,email,user_avatar,user_background,marriaged,ward_id,address,status_id,account_id) VALUE (:#{#user.userName},:#{#user.birthday},:#{#user.gender},:#{#user.occupation},:#{#user.email},:#{#user.userAvatar},:#{#user.userBackground},:#{#user.marriaged},:#{#user.ward.wardId},:#{#user.address},:#{#user.status.statusId}, :#{#user.account.accountId})", nativeQuery = true)
+        @Query(value = "INSERT INTO user (username,birthday,gender,occupation,email,user_avatar,user_background,marriaged,ward_id,address,status_id,account_id) VALUE (:#{#user.userName},:#{#user.birthday},:#{#user.gender},:#{#user.occupation},:#{#user.email},:#{#user.userAvatar},:#{#user.userBackground},:#{#user.marriaged},:#{#user.ward.wardId},:#{#user.address},:#{#user.status.statusId}, :#{#user.account.accountId})", nativeQuery = true)
     void createUser(User user);
 
     @Query(value = "SELECT * FROM user WHERE user.user_id = :userId", nativeQuery = true)

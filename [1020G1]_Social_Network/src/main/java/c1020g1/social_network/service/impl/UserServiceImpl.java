@@ -16,6 +16,8 @@ import c1020g1.social_network.service.UserService;
 import c1020g1.social_network.repository.AccountRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.List;
@@ -32,6 +34,10 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private FavouriteUserRepository favouriteUserRepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+
     /**
      * author: PhucPT
      * method: transaction invoke account repository, user repository, favourite repository to create account,
@@ -45,6 +51,8 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public User createUser(UserCreateDTO userCreateDTO) {
         Account account = userCreateDTO.getAccount();
+        account.setPassword(passwordEncoder.encode(account.getPassword()));
+
         User user = userCreateDTO.getUser();
         Favourite[] favourites = userCreateDTO.getFavourites();
 
