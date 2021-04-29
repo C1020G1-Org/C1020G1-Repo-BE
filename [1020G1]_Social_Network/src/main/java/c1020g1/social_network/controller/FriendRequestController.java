@@ -25,46 +25,78 @@ public class FriendRequestController {
     @Autowired
     FriendsService friendsService;
 
+    /**
+     * Author : TungNT
+     * Get All Friend Request Of User
+     */
     @GetMapping("/friend_request/{id}")
     public ResponseEntity<List<FriendRequest>> getAllFriendRequest(@PathVariable Integer id) {
-        List<FriendRequest> friendRequestList = friendRequestService.findAllFriendRequest(id);
+        try {
+            List<FriendRequest> friendRequestList = friendRequestService.findAllFriendRequest(id);
 
-        for (int i = 0; i < friendRequestList.size(); i++){
-            FriendRequest friendRequest = friendRequestList.get(i);
+            for (int i = 0; i < friendRequestList.size(); i++) {
+                FriendRequest friendRequest = friendRequestList.get(i);
 
-            List<User> mutualFriend = friendsService.findMutualFriend
-                    (friendRequest.getReceiveUser().getUserId(),friendRequest.getSendUser().getUserId());
+                List<User> mutualFriend = friendsService.findMutualFriend
+                        (friendRequest.getReceiveUser().getUserId(), friendRequest.getSendUser().getUserId());
 
-            friendRequestList.get(i).setMutualFriends(mutualFriend);
-        }
+                friendRequestList.get(i).setMutualFriends(mutualFriend);
+            }
             return new ResponseEntity<>(friendRequestList, HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
+    /**
+     * Author: TungNT
+     * Create Friend Request from user A to user B
+     */
     @PostMapping("/friend_request")
     public ResponseEntity<Void> createFriendRequest(@RequestBody FriendRequest friendRequest) {
+        try{
         if (userService.getUserById(friendRequest.getSendUser().getUserId()) == null ||
                 userService.getUserById(friendRequest.getReceiveUser().getUserId()) == null) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
 
-        if (friendRequestService.saveFriendRequest(friendRequest).equals("NG")) {
+            if (friendRequestService.saveFriendRequest(friendRequest).equals("NG")) {
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-
-        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
+    /**
+     * Author : TungNT
+     * Delete friend request
+     */
     @DeleteMapping("/delete/friend_request/{id}")
     public ResponseEntity<Void> deleteFriendRequest(@PathVariable Integer id) {
-        if (friendRequestService.deleteFriendRequest(id).equals("NG")) {
+        try {
+            if (friendRequestService.deleteFriendRequest(id).equals("NG")) {
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    /**
+     * Author: TungNT
+     * Get Mutual Friend between send user and receive user.
+     */
     @GetMapping("/mutual/{id1}/{id2}")
     public ResponseEntity<List<User>> getMutual(@PathVariable Integer id1,@PathVariable Integer id2){
-        List<User> mutual = friendsService.findMutualFriend(id1,id2);
-        return new ResponseEntity<>(mutual,HttpStatus.OK);
+        try {
+            List<User> mutual = friendsService.findMutualFriend(id1, id2);
+            return new ResponseEntity<>(mutual, HttpStatus.OK);
+        } catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 }
