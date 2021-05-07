@@ -1,51 +1,60 @@
 package c1020g1.social_network.service.post;
 
 import c1020g1.social_network.model.Post;
+import c1020g1.social_network.model.PostImage;
+import c1020g1.social_network.repository.PostImageRepository;
 import c1020g1.social_network.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.Collection;
-import java.util.Comparator;
+import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
 
 @Service
 public class PostServiceImpl implements PostService {
 
     @Autowired
-    private PostRepository postRepository;
-
-//    @Override
-//    public List<Post> getAllPostInWall(Integer userId) {
-//        return postRepository.getAllPostInWall(userId);
-//    }
-//
-//    @Override
-//    public List<Post> getAllPostInGroupUser(Integer userId) {
-//        return postRepository.getAllPostInGroupUser(userId);
-//    }
-//
-//    @Override
-//    public List<Post> getAllPostOfFriendUser(Integer userId) {
-//        return postRepository.getAllPostOfFriendUser(userId);
-//    }
+    PostRepository postRepository;
+  
+    @Autowired
+    private PostImageRepository postImageRepository;
 
     @Override
-    public List<Post> getAllPostInNewsFeed(Integer userId) {
-        List<Post> postsInWall = postRepository.getAllPostInWall(userId);
+    public Post getPostById(Integer postId) {
+        return postRepository.getPostById(postId);
+    }
 
-        List<Post> postsInGroupUser = postRepository.getAllPostInGroupUser(userId);
+    @Override
+    @Transactional
+    public void createPost(Post post) {
+        if (post.getGroup() == null) {
+            postRepository.createPost(post.getPostContent(), post.getPostStatus(), post.getPostPublished(), post.getUser().getUserId());
+        } else {
+            postRepository.createPostInGroup(post.getPostContent(), post.getPostStatus(), post.getPostPublished(), post.getUser().getUserId(), post.getGroup().getGroupId());
+        }
+    }
 
-        List<Post> postsOfFriendUser = postRepository.getAllPostOfFriendUser(userId);
+    @Override
+    @Transactional
+    public void editPost(Post post) {
+        postRepository.editPost(post.getPostContent(), post.getPostStatus(), post.getPostId());
+    }
 
-        List<Post> postsInNewsFeed = Stream.of(postsInWall, postsInGroupUser, postsOfFriendUser)
-                .flatMap(Collection::stream)
-                .collect(Collectors.toList());
+    @Override
+    public Page<Post> getAllPostInNewsFeed(Integer userId, Pageable pageable) {
+        return postRepository.getAllPostInNewsFeed(userId, pageable);
+    }
 
-        postsInNewsFeed.sort(Comparator.comparing(Post::getPostPublished));
+    @Override
+    public List<PostImage> getAllImageByPostId(Integer postId) {
+        return postImageRepository.getAllImageByPostId(postId);
 
-        return postsInNewsFeed;
+    }
+
+    @Override
+    public List<Post> findAllPostGroup(Integer id) {
+        return postRepository.findAllPostGroup(id);
     }
 }

@@ -8,16 +8,24 @@ public class Status {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "status_id")
-    private int statusId;
+    private Integer statusId;
 
     @Column(name = "status_name")
     private String statusName;
 
-    public int getStatusId() {
+    public Status() {
+    }
+
+    public Status(int statusId, String statusName) {
+        this.statusId = statusId;
+        this.statusName = statusName;
+    }
+
+    public Integer getStatusId() {
         return statusId;
     }
 
-    public void setStatusId(int statusId) {
+    public void setStatusId(Integer statusId) {
         this.statusId = statusId;
     }
 
@@ -28,4 +36,5 @@ public class Status {
     public void setStatusName(String statusName) {
         this.statusName = statusName;
     }
+
 }
